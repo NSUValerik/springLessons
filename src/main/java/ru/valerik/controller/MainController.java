@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.valerik.model.SomeUser;
+import ru.valerik.model.User;
 import ru.valerik.repository.UserRepository;
 
 
@@ -25,17 +25,17 @@ public class MainController {
     // @RequestParam means it is a parameter from the GET or POST request
     @GetMapping(path="/add")
     public @ResponseBody
-    String addNewUser (@RequestParam String name, @RequestParam String email) {
-        SomeUser user = new SomeUser();
-        user.setName(name);
-        user.setEmail(email);
+    String addNewUser (@RequestParam String name, @RequestParam String password) {
+        User user = new User();
+        user.setUsername(name);
+        user.setPassword(password);
         userRepository.save(user);
         return "Saved";
     }
 
     // This returns a JSON or XML with the users
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<SomeUser> getAllUsers() {
+    public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

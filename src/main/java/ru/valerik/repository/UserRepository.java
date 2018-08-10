@@ -1,7 +1,8 @@
 package ru.valerik.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.valerik.model.SomeUser;
+import ru.valerik.model.User;
 
-public interface UserRepository extends CrudRepository<SomeUser, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
 }
