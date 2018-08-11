@@ -24,7 +24,7 @@ public class GreetingController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String main(@RequestParam(name = "filter", required = false, defaultValue = "") String filter, Model model) {
         Iterable<Message> messages;
         if (null != filter && !filter.isEmpty()) {
             messages = messageRepository.findByTag(filter);
@@ -47,6 +47,7 @@ public class GreetingController {
 
         Iterable<Message> messages = messageRepository.findAll();
         model.addAttribute("messages", messages);
+        model.addAttribute("filter", "");
         return "main";
     }
 }
