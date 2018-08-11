@@ -47,7 +47,6 @@ public class GreetingController {
 
         Iterable<Message> messages = messageRepository.findAll();
         model.addAttribute("messages", messages);
-        model.addAttribute("filter", "");
         return "main";
     }
 }
